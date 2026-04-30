@@ -1,5 +1,4 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JwtAuthAPI.Models;
@@ -18,4 +17,9 @@ public class User
 
     public List<Job> JobsCreated
     { get; set; } = new();
+
+    public List<Job> PhotographerJobs
+    { get; set; } = new();
+
+    public string Role { get; set; } = "Photographer";
 }

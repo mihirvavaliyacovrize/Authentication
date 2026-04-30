@@ -43,7 +43,9 @@ public class UserService : IUserService
             PasswordHash =
            BCrypt.Net.BCrypt
            .HashPassword(
-           dto.Password)
+           dto.Password),
+
+            Role = dto.Role
         };
 
         await _repo.AddUser(user);
@@ -76,6 +78,7 @@ public class UserService : IUserService
         return JwtHelper.GenerateToken(
             user.Id,
            user.Email,
+           user.Role,
            _config);
     }
     public async Task<List<UserDto>>
