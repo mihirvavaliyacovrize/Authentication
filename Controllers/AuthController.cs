@@ -1,45 +1,4 @@
-﻿//using Microsoft.AspNetCore.Mvc;
-
-//using JwtAuthAPI.DTOs;
-//using JwtAuthAPI.Services.Interfaces;
-
-//namespace JwtAuthAPI.Controllers;
-
-//[ApiController]
-//[Route("api/auth")]
-//public class AuthController
-//: ControllerBase
-//{
-//    private readonly
-//    IUserService _service;
-
-//    public AuthController(
-//       IUserService service)
-//    {
-//        _service = service;
-//    }
-
-//    [HttpPost("register")]
-//    public async Task<IActionResult>
-//    Register(RegisterDto dto)
-//    {
-//        await _service.Register(dto);
-
-//        return Ok(
-//        "Registered");
-//    }
-
-//    [HttpPost("login")]
-//    public async Task<IActionResult>
-//    Login(LoginDto dto)
-//    {
-//        var token =
-//        await _service.Login(dto);
-
-//        return Ok(
-//        new { Token = token });
-//    }
-//}
+﻿
 
 using Microsoft.AspNetCore.Mvc;
 

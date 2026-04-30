@@ -17,4 +17,14 @@ int userId);
     JobDto dto);
 
     Task DeleteJob(int id);
+
+    Task<List<Job>> GetJobsByUser(
+int userId);
+
+    Task<List<Job>> GetJobsByDate(
+DateTime date);
+
+    Task<List<Job>> GetJobsByUserAndDate(
+    int userId,
+    DateTime date);
 }

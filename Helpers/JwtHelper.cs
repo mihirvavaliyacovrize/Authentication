@@ -1,5 +1,4 @@
-﻿
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
@@ -12,6 +11,7 @@ public static class JwtHelper
     public static string GenerateToken(
     int userId,
     string email,
+    string role,
     IConfiguration config)
     {
         var claims = new[]
@@ -24,6 +24,11 @@ public static class JwtHelper
       new Claim(
        ClaimTypes.Email,
        email
+      ),
+
+      new Claim(
+       ClaimTypes.Role,
+       role
       )
    };
 

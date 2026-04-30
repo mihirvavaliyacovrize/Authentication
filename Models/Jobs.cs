@@ -1,5 +1,4 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JwtAuthAPI.Models;
@@ -24,13 +23,15 @@ public class Job
 
     public string Status { get; set; } = "";
 
-
-    // NEW FK COLUMN
     public int CreatedBy { get; set; }
 
 
-    // NEW Navigation
     [ForeignKey("CreatedBy")]
     public User CreatedByUser
+    { get; set; } = null!;
+
+
+    [ForeignKey("PhotographerId")]
+    public User Photographer
     { get; set; } = null!;
 }
