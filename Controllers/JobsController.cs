@@ -20,12 +20,16 @@ public class JobsController : ControllerBase
 
     [HttpGet]
     public async Task<IActionResult>
-    GetAll([FromQuery] DateTime? date)
+    GetAll([FromQuery] DateTime? date, [FromQuery] bool? today)
     {
+
         int userId = int.Parse(
             User.FindFirst(ClaimTypes.NameIdentifier)!.Value
         );
-
+            if (today == true)
+    {
+        date = DateTime.Today;
+    }
         // ADMIN
         if (User.IsInRole("Admin"))
         {
@@ -71,7 +75,7 @@ public class JobsController : ControllerBase
         );
 
         if (!User.IsInRole("Admin") &&
-            job.CreatedBy != userId)
+            job.PhotographerId != userId)
         {
             return StatusCode(403, new
             {
@@ -82,9 +86,7 @@ public class JobsController : ControllerBase
         return Ok(job);
     }
 
-
-
-    // 🔥 FIX HERE → ADMIN ONLY CREATE
+// admin only create  jobs
     [HttpPost]
     public async Task<IActionResult>
     Create(JobDto dto)

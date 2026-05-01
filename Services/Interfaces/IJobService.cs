@@ -12,9 +12,7 @@ public interface IJobService
     Task<Job> CreateJob(
 JobDto dto,
 int userId);
-    Task<Job?> UpdateJob(
-    int id,
-    JobDto dto);
+    Task<Job?> UpdateJob(int id, JobDto dto);
 
     Task DeleteJob(int id);
 
