@@ -1,6 +1,6 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace JwtAuthAPI.Models;
 
@@ -12,7 +12,7 @@ public class Job
 
     public int ShootId { get; set; }
 
-    public int PhotographerId { get; set; }
+    public int? PhotographerId { get; set; }
 
     public DateTime ShootDate { get; set; }
 
@@ -24,13 +24,17 @@ public class Job
 
     public string Status { get; set; } = "";
 
-
-    // NEW FK COLUMN
     public int CreatedBy { get; set; }
 
 
-    // NEW Navigation
     [ForeignKey("CreatedBy")]
+    [JsonIgnore]
     public User CreatedByUser
+    { get; set; } = null!;
+
+
+    [ForeignKey("PhotographerId")]
+    [JsonIgnore]
+    public User Photographer
     { get; set; } = null!;
 }

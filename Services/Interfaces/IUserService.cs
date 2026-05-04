@@ -1,4 +1,5 @@
 ﻿using JwtAuthAPI.DTOs;
+using JwtAuthAPI.Models;
 
 namespace JwtAuthAPI.Services.Interfaces;
 

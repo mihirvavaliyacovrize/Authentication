@@ -12,9 +12,15 @@ public interface IJobService
     Task<Job> CreateJob(
 JobDto dto,
 int userId);
-    Task<Job?> UpdateJob(
-    int id,
-    JobDto dto);
+    Task<Job?> UpdateJob(int id, JobDto dto);
 
     Task DeleteJob(int id);
+
+    Task<List<Job>> GetJobsByUser(
+int userId);
+
+    Task<List<Job>> GetJobsByDate(
+DateTime date);
+
+
 }
