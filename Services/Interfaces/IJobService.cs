@@ -22,7 +22,5 @@ int userId);
     Task<List<Job>> GetJobsByDate(
 DateTime date);
 
-    Task<List<Job>> GetJobsByUserAndDate(
-    int userId,
-    DateTime date);
+
 }

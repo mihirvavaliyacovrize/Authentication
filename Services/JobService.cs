@@ -14,22 +14,17 @@ public class JobService : IJobService
         _repo = repo;
     }
 
-    // GET ALL
     public async Task<List<Job>> GetJobs()
     {
         return await _repo.GetAll();
     }
 
-    // GET BY ID
     public async Task<Job?> GetJob(int id)
     {
         return await _repo.GetById(id);
     }
 
-    // CREATE
-    public async Task<Job> CreateJob(
-        JobDto dto,
-        int userId)
+    public async Task<Job> CreateJob(JobDto dto, int userId)
     {
         Job job = new Job
         {
@@ -49,7 +44,6 @@ public class JobService : IJobService
         return job;
     }
 
-    // UPDATE
     public async Task<Job?> UpdateJob(int id, JobDto dto)
     {
         var job = await _repo.GetById(id);
@@ -70,7 +64,6 @@ public class JobService : IJobService
         return job;
     }
 
-    // DELETE
     public async Task DeleteJob(int id)
     {
         var job = await _repo.GetById(id);
@@ -82,7 +75,7 @@ public class JobService : IJobService
         }
     }
 
-    // GET JOBS BY USER
+    // 🔥 ONLY OWN JOBS
     public async Task<List<Job>> GetJobsByUser(int userId)
     {
         var jobs = await _repo.GetAll();
@@ -92,27 +85,18 @@ public class JobService : IJobService
             .ToList();
     }
 
-    // NEW: GET JOBS BY DATE (ADMIN)
+    // 🔥 ALL JOBS BY DATE (FIXED)
     public async Task<List<Job>> GetJobsByDate(DateTime date)
     {
         var jobs = await _repo.GetAll();
 
-        return jobs
-            .Where(x => x.ShootDate.Date == date.Date)
-            .ToList();
-    }
-
-    // NEW: GET JOBS BY USER + DATE (PHOTOGRAPHER)
-    public async Task<List<Job>> GetJobsByUserAndDate(
-        int userId,
-        DateTime date)
-    {
-        var jobs = await _repo.GetAll();
+        DateTime start = date.Date;
+        DateTime end = start.AddDays(1);
 
         return jobs
             .Where(x =>
-                x.PhotographerId == userId &&
-                x.ShootDate.Date == date.Date
+                x.ShootDate >= start &&
+                x.ShootDate < end
             )
             .ToList();
     }
